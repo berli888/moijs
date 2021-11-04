@@ -100,6 +100,17 @@ end SimpleCircuit;
                         modValue.push(value[name]);
                 value = modValue;
             }
+            if (value._parserClass === "OutputExpressionList") {
+        const newList = [];
+        for (let i = 0; i < value.length; i++) {
+            newList = value["" + i];
+        }
+        const newValue = {
+            expressions: newList,
+            _parserClass: "CustomOutputExpressionList"
+        }
+        return newValue;
+    }
             return value;
         }, 2);
         resultString = resultString.replace(/\s+{/g, " {").replace(/\s+}/g, " }");
