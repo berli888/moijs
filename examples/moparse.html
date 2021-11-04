@@ -101,7 +101,7 @@ end SimpleCircuit;
                 value = modValue;
             }
             if (value && value._parserClass === "OutputExpressionList") {
-        const newList = [];
+        let newList = [];
         for (let i = 0; i < value.length; i++) {
             newList = value["" + i];
         }
