@@ -103,7 +103,7 @@ end SimpleCircuit;
             if (value && value._parserClass === "OutputExpressionList") {
         let newList = [];
         for (let i = 0; i < value.length; i++) {
-            newList = value["" + i];
+            newList.push(value["" + i]);
         }
         const newValue = {
             expressions: newList,
