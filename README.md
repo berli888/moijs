@@ -10,7 +10,7 @@ A Modelica editing mode for [CodeMirror](http://codemirror.net) is generated fro
 
 ##Examples
 
-The [moijs project pages](http://omuses.github.io/moijs) show running examples.
+The [moijs project pages](https://berli888.github.io/moijs/examples/moparse.html) show running examples.
 
 ###Running in a Web browser
 
