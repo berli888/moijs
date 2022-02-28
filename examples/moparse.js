@@ -72,8 +72,8 @@ else {
       //console.log(JSON.stringify(result, undefined, 2));
       var resultString = JSON.stringify(result, function(key, value) {
         // skip track objects
-        if (value && value.track)
-          delete value.track;
+        //if (value && value.track)
+        //  delete value.track;
         // add constructor name as _parserClass if key does not match
         if (typeof(value) === "object"
             && value.constructor !== Object && value.constructor !== Array
