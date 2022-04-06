@@ -371,13 +371,13 @@ section:
         PUBLIC element_list
         {
             $$ = $2;
-            for (var element in $$)
+            for (var element of $$)
                 element.isPublic = true;
         }
     |   PROTECTED element_list
         {
             $$ = $2;
-            for (var element in $$)
+            for (var element of $$)
                 element.isProtected = true;
         }
     |   algorithm_section
