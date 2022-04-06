@@ -1462,18 +1462,20 @@ opt_array_subscripts:
 
 array_subscripts:
         "[" subscripts "]"
+        {
+            $$ = $2;
+        }
     ;
 
 subscripts:
         subscript
         {
-            $$ = new ArraySubscripts(track(@$));
+            $$ = new ArraySubscripts();
             $$.push($1);
         }
     |   subscripts "," subscript
         {
             $$.push($3);
-            updateTrack($$, @$);
         }
     ;
 
