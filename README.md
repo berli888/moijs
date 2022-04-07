@@ -24,4 +24,4 @@ The [moijs project pages](https://berli888.github.io/moijs/examples/moparse.html
 
 ###Generation of moparser.js
 
-npx jison moparser.jison molexer.jisonlex -p lr
+`npx jison moparser.jison molexer.jisonlex -p lr`
