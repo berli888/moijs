@@ -20,3 +20,7 @@ The [moijs project pages](https://berli888.github.io/moijs/examples/moparse.html
 
 - `moparse.js` &ndash; invoke `moparser.js` for console input or for files of a Modelica package 
 - `molex.js` &ndash; tokenize console input
+
+
+###Generation of moparser.js
+npx jison moparser.jison molexer.jisonlex -p lr
