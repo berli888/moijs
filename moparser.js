@@ -1217,6 +1217,7 @@ function updateTrack(production, location) {
 function Track(location) {
     this.fileName = parser.lexer.fileName;
     this.location = location;
+    this._parserClass = "Track";
 }
 
 Track.prototype.toString = function() {
@@ -1245,10 +1246,12 @@ function copyAttributes(src, dst) {
 function Definition(track) {
     /* Common base class for Modelica definitions */
     if (track) this.track = track;
+    this._parserClass = "Definition";
 }
 
 function List() {
     /* Common base class for lists */
+    this._parserClass = "List";
 }
 defineSubclass(Array, List);
 
@@ -1260,6 +1263,7 @@ function StoredDefinition(track) {
     this.name = undefined;
     this.classDefinitionList = [];
     */
+    this._parserClass = "StoredDefinition";
 }
 defineSubclass(Definition, StoredDefinition);
 
@@ -1271,6 +1275,7 @@ function Element(track) {
     this.isPublic = false;
     this.isProtected = false;
     */
+    this._parserClass = "Element";
 }
 
 function ImportClause(track) {
@@ -1283,14 +1288,17 @@ function ImportClause(track) {
     this.stringComment = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "ImportClause";
 }
 defineSubclass(Element, ImportClause);
 
 function ElementList() {
+    this._parserClass = "ElementList";
 }
 defineSubclass(List, ElementList);
 
 function SectionList() {
+    this._parserClass = "SectionList";
 }
 defineSubclass(List, SectionList);
 
@@ -1303,6 +1311,7 @@ function External(track) {
     this.languageSpecification = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "External";
 }
 defineSubclass(Definition, External);
 
@@ -1321,6 +1330,7 @@ function Composition() {
     this.external = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "Composition";
 }
 
 Composition.prototype.storeElementList = function (elementList) {
@@ -1405,13 +1415,16 @@ function EnumerationLiteral(track) {
     this.stringComment = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "EnumerationLiteral";
 }
 
 function EnumList() {
+    this._parserClass = "EnumList";
 }
 defineSubclass(List, EnumList);
 
 function IdentList() {
+    this._parserClass = "IdentList";
 }
 defineSubclass(List, IdentList);
 
@@ -1441,6 +1454,7 @@ function ClassSpecifier(track) {
     // additional attributes of der_specifier
     this.identList = undefined;
     */
+    this._parserClass = "ClassSpecifier";
 }
 
 function ClassDefinition(track) {
@@ -1481,46 +1495,55 @@ function ClassDefinition(track) {
     // optional constraining clause for element_replaceable
     this.constrainingClause = undefined;
     */
+    this._parserClass = "ClassDefinition";
 }
 defineSubclass(Definition, ClassDefinition);
 
 function ModelDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "ModelDefinition";
 }
 defineSubclass(ClassDefinition, ModelDefinition);
 
 function RecordDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "RecordDefinition";
 }
 defineSubclass(ClassDefinition, RecordDefinition);
 
 function BlockDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "BlockDefinition";
 }
 defineSubclass(ClassDefinition, BlockDefinition);
 
 function ConnectorDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "ConnectorDefinition";
 }
 defineSubclass(ClassDefinition, ConnectorDefinition);
 
 function TypeDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "TypeDefinition";
 }
 defineSubclass(ClassDefinition, TypeDefinition);
 
 function PackageDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "PackageDefinition";
 }
 defineSubclass(ClassDefinition, PackageDefinition);
 
 function FunctionDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "FunctionDefinition";
 }
 defineSubclass(ClassDefinition, FunctionDefinition);
 
 function OperatorDefinition(track) {
     ClassDefinition.call(this, track);
+    this._parserClass = "OperatorDefinition";
 }
 defineSubclass(ClassDefinition, OperatorDefinition);
 
@@ -1533,6 +1556,7 @@ function ExtendsClause(track) {
     this.classModification = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "ExtendsClause";
 }
 defineSubclass(Element, ExtendsClause);
 
@@ -1542,6 +1566,7 @@ function ConstrainingClause(track) {
     this.name = undefined;
     this.classModification = undefined;
     */
+    this._parserClass = "ConstrainingClause";
 }
 defineSubclass(Element, ConstrainingClause);
 
@@ -1558,9 +1583,11 @@ function ComponentDeclaration(track) {
     this.stringComment = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "ComponentDeclaration";
 }
 
 function ComponentList() {
+    this._parserClass = "ComponentList";
 }
 defineSubclass(List, ComponentList);
 
@@ -1589,6 +1616,7 @@ function ComponentClause(track) {
     this.stringComment = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "ComponentClause";
 }
 
 // See Modelica Spec 3.3, Appendix B.2.5
@@ -1614,6 +1642,7 @@ function ComponentClause1(track) {
     this.isReplaceable = false;
     this.constrainingClause = undefined;
     */
+    this._parserClass = "ComponentClause1";
 }
 
 function ElementModification(track) {
@@ -1625,13 +1654,16 @@ function ElementModification(track) {
     this.modification = undefined;
     this.stringComment = undefined;
     */
+    this._parserClass = "ElementModification";
 }
 
 function ArgumentList() {
+    this._parserClass = "ArgumentList";
 }
 defineSubclass(List, ArgumentList);
 
 function ClassModification() {
+    this._parserClass = "ClassModification";
 }
 defineSubclass(List, ClassModification);
 
@@ -1640,6 +1672,7 @@ function Modification() {
     this.argumentList = [];
     this.expression = undefined;
     */
+    this._parserClass = "Modification";
 }
 
 // See Modelica Spec 3.3, Appendix B.2.6
@@ -1650,6 +1683,7 @@ function ForIndex(track) {
     this.ident = undefined;
     this.expression = undefined;
     */
+    this._parserClass = "ForIndex";
 }
 defineSubclass(Definition, ForIndex);
 
@@ -1659,6 +1693,7 @@ function Equation(track) {
     this.stringComment = undefined;
     this.annotation = undefined;
     */
+    this._parserClass = "Equation";
 }
 defineSubclass(Definition, Equation);
 
@@ -1668,11 +1703,13 @@ function SimpleEquation(track) {
     this.simpleExpression = undefined;
     this.expression = undefined;
     */
+    this._parserClass = "SimpleEquation";
 }
 defineSubclass(Equation, SimpleEquation);
 
 function Statement(track) {
     Definition.call(this, track);
+    this._parserClass = "Statement";
 }
 defineSubclass(Definition, Statement);
 
@@ -1681,6 +1718,7 @@ function EquationStatement(track) {
     Statement.call(this, track);
     this.componentReference = undefined;
     this.expression = undefined;
+    this._parserClass = "EquationStatement";
 }
 defineSubclass(Statement, EquationStatement);
 
@@ -1688,6 +1726,7 @@ function SimpleStatement() {
     Statement.call(this, track);
     this.componentReference = undefined;
     this.expression = undefined;
+    this._parserClass = "SimpleStatement";
 }
 defineSubclass(Statement, EquationStatement);
 
@@ -1697,6 +1736,7 @@ function FunctionCallEquation(track) {
     this.name = undefined;
     this.functionCallArgs = undefined;
     */
+    this._parserClass = "FunctionCallEquation";
 }
 defineSubclass(Equation, FunctionCallEquation);
 
@@ -1707,6 +1747,7 @@ function FunctionCallStatement(track) {
     this.functionCallArgs = undefined;
     this.outputExpressionList = undefined;
     */
+    this._parserClass = "FunctionCallStatement";
 }
 defineSubclass(Statement, FunctionCallStatement);
 
@@ -1718,16 +1759,19 @@ function ConditionalEquation(track) {
     this.equationList = undefined;
     this.elseEquation = undefined;
     */
+    this._parserClass = "ConditionalEquation";
 }
 defineSubclass(Equation, ConditionalEquation);
 
 function IfEquation(track) {
     ConditionalEquation.call(this, track);
+    this._parserClass = "IfEquation";
 }
 defineSubclass(ConditionalEquation, IfEquation);
 
 function WhenEquation(track) {
     ConditionalEquation.call(this, track);
+    this._parserClass = "WhenEquation";
 }
 defineSubclass(ConditionalEquation, WhenEquation);
 
@@ -1739,16 +1783,19 @@ function ConditionalStatement(track) {
     this.statementList = undefined;
     this.elseStatement = undefined;
     */
+    this._parserClass = "ConditionalStatement";
 }
 defineSubclass(Statement, ConditionalStatement);
 
 function IfStatement(track) {
     ConditionalStatement.call(this, track);
+    this._parserClass = "IfStatement";
 }
 defineSubclass(ConditionalStatement, IfStatement);
 
 function WhenStatement(track) {
     ConditionalStatement.call(this, track);
+    this._parserClass = "WhenStatement";
 }
 defineSubclass(ConditionalStatement, WhenStatement);
 
@@ -1758,6 +1805,7 @@ function ForEquation(track) {
     this.forIndices = undefined;
     this.equationList = undefined;
     */
+    this._parserClass = "ForEquation";
 }
 defineSubclass(Equation, ForEquation);
 
@@ -1767,6 +1815,7 @@ function ForStatement(track) {
     this.forIndices = undefined;
     this.statementList = undefined;
     */
+    this._parserClass = "ForStatement";
 }
 defineSubclass(Statement, ForStatement);
 
@@ -1776,12 +1825,14 @@ function WhileStatement(track) {
     this.expression = undefined;
     this.statementList = undefined;
     */
+    this._parserClass = "WhileStatement";
 }
 defineSubclass(Statement, WhileStatement);
 
 function KeywordStatement(track) {
     Statement.call(this, track);
     this.keyword = undefined;
+    this._parserClass = "KeywordStatement";
 }
 defineSubclass(Statement, KeywordStatement);
 
@@ -1791,6 +1842,7 @@ function AlgorithmSection(track) {
     this.isInitial = false;
     this.statementList = undefined;
     */
+    this._parserClass = "AlgorithmSection";
 }
 defineSubclass(Definition, AlgorithmSection);
 
@@ -1800,6 +1852,7 @@ function EquationSection(track) {
     this.isInitial = false;
     this.equationList = undefined;
     */
+    this._parserClass = "EquationSection";
 }
 defineSubclass(Definition, EquationSection);
 
@@ -1809,6 +1862,7 @@ function ConnectClause(track) {
     this.componentReference1 = undefined;
     this.componentReference2 = undefined;
     */
+    this._parserClass = "ConnectClause";
 }
 defineSubclass(Equation, ConnectClause);
 
@@ -1816,21 +1870,25 @@ defineSubclass(Equation, ConnectClause);
 // See Modelica Spec 3.3, Appendix B.2.7
 
 function StringComment() {
+    this._parserClass = "StringComment";
 }
 defineSubclass(List, StringComment);
 
 function Annotation(track) {
     Definition.call(this, track);
+    this._parserClass = "Annotation";
 }
 defineSubclass(Definition, Annotation);
 
 function Subscript(track) {
     if (track) this.track = track;
     this.value = undefined;
+    this._parserClass = "Subscript";
 }
 
 function ArraySubscripts(track) {
     if (track) this.track = track;
+    this._parserClass = "ArraySubscripts";
 }
 defineSubclass(List, ArraySubscripts);
 
@@ -1841,6 +1899,7 @@ function ComponentReference(track) {
     this.identList = undefined;
     this.arraySubscriptsList = undefined;
     */
+    this._parserClass = "ComponentReference";
 }
 
 function Name(track) {
@@ -1849,6 +1908,7 @@ function Name(track) {
     this.isGlobal = undefined;
     this.identList = [];
     */
+    this._parserClass = "Name";
 }
 
 Name.prototype.toString = function () {
@@ -1861,12 +1921,14 @@ function NamedArgument(track) {
     this.ident = undefined;
     this.functionArgument = undefined;
     */
+    this._parserClass = "NamedArgument";
 }
 
 function ForArgument(track) {
     if (track) this.track = track;
     this.functionArgument = undefined;
     this.forIndices = undefined;
+    this._parserClass = "ForArgument";
 }
 
 function FunctionArguments(track) {
@@ -1875,6 +1937,7 @@ function FunctionArguments(track) {
     this.positionalArgumentList = undefined;
     this.namedArgumentList = undefined;
     */
+    this._parserClass = "FunctionArguments";
 }
 
 function FunctionCallArgs(track) {
@@ -1883,6 +1946,7 @@ function FunctionCallArgs(track) {
     this.positionalArgumentList = undefined;
     this.namedArgumentList = undefined;
     */
+    this._parserClass = "FunctionCallArgs";
 }
 
 function FunctionReference(track) {
@@ -1891,10 +1955,12 @@ function FunctionReference(track) {
     this.name = undefined;
     this.namedArgumentList = undefined;
     */
+    this._parserClass = "FunctionReference";
 }
 
 function Expression(track) {
     Definition.call(this, track);
+    this._parserClass = "Expression";
 }
 defineSubclass(Definition, Expression);
 
@@ -1903,21 +1969,25 @@ function Primary(track) {
     /*
     this.value = undefined;
     */
+    this._parserClass = "Primary";
 }
 defineSubclass(Expression, Primary);
 
 function PrimaryUnsignedNumber(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryUnsignedNumber";
 }
 defineSubclass(Primary, PrimaryUnsignedNumber);
 
 function PrimaryString(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryString";
 }
 defineSubclass(Primary, PrimaryString);
 
 function PrimaryBoolean(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryBoolean";
 }
 defineSubclass(Primary, PrimaryBoolean);
 
@@ -1927,31 +1997,37 @@ function PrimaryFunctionCall(track) {
     this.name = undefined;
     this.functionCallArgs = undefined;
     */
+    this._parserClass = "PrimaryFunctionCall";
 }
 defineSubclass(Primary, PrimaryFunctionCall);
 
 function PrimaryComponentReference(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryComponentReference";
 }
 defineSubclass(Primary, PrimaryComponentReference);
 
 function PrimaryTuple(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryTuple";
 }
 defineSubclass(Primary, PrimaryTuple);
 
 function PrimaryMatrix(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryMatrix";
 }
 defineSubclass(Primary, PrimaryMatrix);
 
 function PrimaryArray(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryArray";
 }
 defineSubclass(Primary, PrimaryArray);
 
 function PrimaryEnd(track) {
     Primary.call(this, track);
+    this._parserClass = "PrimaryEnd";
 }
 defineSubclass(Primary, PrimaryEnd);
 
@@ -1965,46 +2041,55 @@ function NonPrimaryExpression(track) {
     this.expression2 = undefined;
     this.expression3 = undefined;
     */
+    this._parserClass = "NonPrimaryExpression";
 }
 defineSubclass(Expression, NonPrimaryExpression);
 
 function IfExpression(track) {
     NonPrimaryExpression.call(this, track);
+    this._parserClass = "IfExpression";
 }
 defineSubclass(NonPrimaryExpression, IfExpression);
 
 function SimpleExpression(track) {
     NonPrimaryExpression.call(this, track);
+    this._parserClass = "SimpleExpression";
 }
 defineSubclass(NonPrimaryExpression, SimpleExpression);
 
 function LogicalExpression(track) {
     NonPrimaryExpression.call(this, track);
+    this._parserClass = "LogicalExpression";
 }
 defineSubclass(NonPrimaryExpression, LogicalExpression);
 
 function Relation(track) {
     NonPrimaryExpression.call(this, track);
+    this._parserClass = "Relation";
 }
 defineSubclass(NonPrimaryExpression, Relation);
 
 function ArithmeticExpression(track) {
     NonPrimaryExpression.call(this, track);
+    this._parserClass = "ArithmeticExpression";
 }
 defineSubclass(NonPrimaryExpression, ArithmeticExpression);
 
 function ExpressionList(track) {
     if (track) this.track = track;
+    this._parserClass = "ExpressionList";
 }
 defineSubclass(List, ExpressionList);
 
 function OutputExpressionList(track) {
     if (track) this.track = track;
+    this._parserClass = "OutputExpressionList";
 }
 defineSubclass(List, OutputExpressionList);
 
 function ExpressionMatrix(track) {
     if (track) this.track = track;
+    this._parserClass = "ExpressionMatrix";
 }
 defineSubclass(List, ExpressionMatrix);
 
