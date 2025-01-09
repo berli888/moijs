@@ -69,7 +69,7 @@ end SimpleCircuit;
 <script>
     document.getElementById("parse").addEventListener("click", function () {
         try {
-            var result = moparser.parse(editor.getValue());
+            var result = moparser.parse(editor.getValue() ?? document.getElementById("code").innerHTML);
         }
         catch (ex) {
             alert(ex);
