@@ -12,7 +12,7 @@ NONDIGIT         [_a-zA-Z]
 STRING           \" ( {S-CHAR} | {S-ESCAPE} )* \"
 S-CHAR           [^\"\\]
 Q-CHAR           {NONDIGIT} | {DIGIT} | [!#$%&()*+,\-./:;<>=?@[\]\^{}|~ ]
-S-ESCAPE         \\[\'\"\?\\abfnrtv]
+S-ESCAPE         \\.
 DIGIT            [0-9]
 UNSIGNED_INTEGER {DIGIT}+
 UNSIGNED_NUMBER  {UNSIGNED_INTEGER} ("." {UNSIGNED_INTEGER}? )? \
