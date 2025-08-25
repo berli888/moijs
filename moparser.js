@@ -355,15 +355,20 @@ break;
 case 59:
 
             this.$ = $$[$0];
-            for (var element of this.$)
-                element.isPublic = true;
+            if(this.$ instanceof Array) {
+                for (var element of this.$)
+                    element.isPublic = true;
+            }
         
 break;
 case 60:
 
             this.$ = $$[$0];
-            for (var element of this.$)
-                element.isProtected = true;
+            if(this.$ instanceof Array) {
+                for (var element of this.$)
+                    element.isProtected = true;
+            }
+
         
 break;
 case 64:
@@ -1336,6 +1341,9 @@ function Composition() {
 Composition.prototype.storeElementList = function (elementList) {
     var composition = this;
     (elementList || []).forEach(function(element) {
+        if(element === undefined) {
+            return;
+        }
         if (element instanceof ImportClause) {
             if (!composition.importClauseList)
                 composition.importClauseList = [];
@@ -1368,6 +1376,9 @@ Composition.prototype.storeElementList = function (elementList) {
 Composition.prototype.storeSectionList = function (sectionList) {
     var composition = this;
     (sectionList || []).forEach(function(section) {
+        if(section === undefined) {
+            return;
+        }
         if (section instanceof EquationSection) {
             if (section.isInitial)
                 (section.equationList || []).forEach(function(equation) {

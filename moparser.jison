@@ -371,14 +371,19 @@ section:
         PUBLIC element_list
         {
             $$ = $2;
-            for (var element of $$)
-                element.isPublic = true;
+            if($$ instanceof Array) {
+                for (var element of $$)
+                    element.isPublic = true;
+            }
         }
     |   PROTECTED element_list
         {
             $$ = $2;
-            for (var element of $$)
-                element.isProtected = true;
+            if($$ instanceof Array) {
+                for (var element of $$)
+                    element.isProtected = true;
+            }
+
         }
     |   algorithm_section
     |   equation_section
@@ -1687,6 +1692,9 @@ function Composition() {
 Composition.prototype.storeElementList = function (elementList) {
     var composition = this;
     (elementList || []).forEach(function(element) {
+        if(element === undefined) {
+            return;
+        }
         if (element instanceof ImportClause) {
             if (!composition.importClauseList)
                 composition.importClauseList = [];
@@ -1719,6 +1727,9 @@ Composition.prototype.storeElementList = function (elementList) {
 Composition.prototype.storeSectionList = function (sectionList) {
     var composition = this;
     (sectionList || []).forEach(function(section) {
+        if(section === undefined) {
+            return;
+        }
         if (section instanceof EquationSection) {
             if (section.isInitial)
                 (section.equationList || []).forEach(function(equation) {
